@@ -11,6 +11,8 @@
         android:id="@+id/img_detail_photo"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="?attr/colorPrimaryVariant"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
