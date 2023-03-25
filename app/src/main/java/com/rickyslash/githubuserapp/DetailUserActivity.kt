@@ -104,6 +104,7 @@ class DetailUserActivity : AppCompatActivity() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBarDetail.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.tabsDetail.visibility = if (isLoading) View.GONE else View.VISIBLE
+        binding.constaintDetailInfo.visibility = if (isLoading) View.INVISIBLE else View.VISIBLE
         binding.vpDetail.visibility = if (isLoading) View.INVISIBLE else View.VISIBLE
     }
 
