@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.lifecycle.lifecycleScope
@@ -96,12 +97,20 @@ class DetailUserActivity : AppCompatActivity() {
         detailUserViewModel.following.observe(this) {
             binding.tvDetailFollowing.text = getString(R.string.following, detailUserViewModel.following.value)
         }
+
+        detailUserViewModel.isError.observe(this) {
+            connectionErrorCheck(it)
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBarDetail.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.tabsDetail.visibility = if (isLoading) View.GONE else View.VISIBLE
         binding.vpDetail.visibility = if (isLoading) View.INVISIBLE else View.VISIBLE
+    }
+
+    private fun connectionErrorCheck(isError: Boolean) {
+        if (isError) Toast.makeText(this, "There's an error connecting to the server", Toast.LENGTH_SHORT).show()
     }
 
 }

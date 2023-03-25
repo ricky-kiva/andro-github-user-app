@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rickyslash.githubuserapp.databinding.DetailFollowsFragmentBinding
@@ -51,6 +52,10 @@ class DetailFollowsFragment : Fragment() {
                 setFollowsData(it)
             }
         }
+
+        detailFollowsViewModel.isError.observe(viewLifecycleOwner) {
+            connectionErrorCheck(it)
+        }
     }
 
     private fun setFollowsData(followsData: List<DetailFollowsResponseItem>) {
@@ -73,5 +78,9 @@ class DetailFollowsFragment : Fragment() {
         const val ARG_SECTION_NUMBER = "section_number"
         const val ARG_USERNAME = "username"
         const val TAG = "DetailFollowsFragment"
+    }
+
+    private fun connectionErrorCheck(isError: Boolean) {
+        if (isError) Toast.makeText(requireContext(), "There's an error connecting to the server", Toast.LENGTH_SHORT).show()
     }
 }

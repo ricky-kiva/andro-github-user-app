@@ -16,12 +16,16 @@ class DetailFollowsViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isError = MutableLiveData<Boolean>()
+    val isError: LiveData<Boolean> = _isError
+
     companion object {
         private val TAG = DetailFollowsViewModel::class.java.simpleName
     }
 
     fun getFollows(username: String, index: Int) {
         _isLoading.value = true
+        _isError.value = false
         lateinit var client: Call<List<DetailFollowsResponseItem>>
         if (index == 1) {
             client = ApiConfig.getApiService().getFollowers(username)
@@ -40,12 +44,14 @@ class DetailFollowsViewModel: ViewModel() {
                         _listFollows.value = responseBody
                     }
                 } else {
+                    _isError.value = true
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<List<DetailFollowsResponseItem>>, t: Throwable) {
                 _isLoading.value = false
+                _isError.value = true
                 Log.e(TAG, "onFailure: ${t.message}")
             }
 

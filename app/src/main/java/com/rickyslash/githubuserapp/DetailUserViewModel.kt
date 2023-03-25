@@ -28,12 +28,16 @@ class DetailUserViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isError = MutableLiveData<Boolean>()
+    val isError: LiveData<Boolean> = _isError
+
     companion object {
         private val TAG = DetailUserViewModel::class.java.simpleName
     }
 
     fun displayUser(username: String = "ricky-kiva") {
         _isLoading.value = true
+        _isError.value = false
         val client = ApiConfig.getApiService().getDetailUser(username)
         client.enqueue(object : Callback<DetailUserResponse> {
             override fun onResponse(
@@ -51,12 +55,14 @@ class DetailUserViewModel: ViewModel() {
                         _following.value = responseBody.following
                     }
                 } else {
+                    _isError.value = true
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
                 _isLoading.value = false
+                _isError.value = true
                 Log.e(TAG, "onFailure: ${t.message}")
             }
 

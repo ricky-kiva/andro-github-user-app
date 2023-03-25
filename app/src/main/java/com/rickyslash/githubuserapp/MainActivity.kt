@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
             showLoading(it)
         }
 
+        mainViewModel.isError.observe(this) {
+            connectionErrorCheck(it)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -79,4 +83,9 @@ class MainActivity : AppCompatActivity() {
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) binding.progressBar.visibility = View.VISIBLE else binding.progressBar.visibility = View.GONE
     }
+
+    private fun connectionErrorCheck(isError: Boolean) {
+        if (isError) Toast.makeText(this, "There's an error connecting to the server", Toast.LENGTH_SHORT).show()
+    }
+
 }

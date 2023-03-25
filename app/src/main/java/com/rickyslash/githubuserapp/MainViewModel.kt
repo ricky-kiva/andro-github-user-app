@@ -1,6 +1,7 @@
 package com.rickyslash.githubuserapp
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,6 +17,9 @@ class MainViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isError = MutableLiveData<Boolean>()
+    val isError: LiveData<Boolean> = _isError
+
     companion object {
         private val TAG = MainViewModel::class.java.simpleName
     }
@@ -26,6 +30,7 @@ class MainViewModel: ViewModel() {
 
     fun searchUsers(username: String = "Pink") {
         _isLoading.value = true
+        _isError.value = false
         val client = ApiConfig.getApiService().getUsers(username)
         client.enqueue(object : Callback<GithubResponse>{
             override fun onResponse(
@@ -39,12 +44,14 @@ class MainViewModel: ViewModel() {
                         _listUser.value = responseBody.items
                     }
                 } else {
+                    _isError.value = true
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<GithubResponse>, t: Throwable) {
                 _isLoading.value = false
+                _isError.value = true
                 Log.e(TAG, "onFailure: ${t.message}")
             }
 
