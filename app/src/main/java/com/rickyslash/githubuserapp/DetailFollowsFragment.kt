@@ -1,0 +1,77 @@
+package com.rickyslash.githubuserapp
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.rickyslash.githubuserapp.databinding.DetailFollowsFragmentBinding
+
+class DetailFollowsFragment : Fragment() {
+
+    private lateinit var binding: DetailFollowsFragmentBinding
+    private val detailFollowsViewModel by viewModels<DetailFollowsViewModel>()
+    private lateinit var adapter: FollowsAdapter
+
+    private fun showUserDetails(data: DetailFollowsResponseItem) {
+        val moveUserDetailsIntent = Intent(requireContext(), DetailUserActivity::class.java)
+        moveUserDetailsIntent.putExtra(DetailUserActivity.EXTRA_USERNAME, data.login)
+        startActivity(moveUserDetailsIntent)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DetailFollowsFragmentBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val index = arguments?.getInt(ARG_SECTION_NUMBER, 0)
+        val username = arguments?.getString(ARG_USERNAME)
+
+        if (index != null && username != null) {
+            detailFollowsViewModel.getFollows(username, index)
+        }
+
+        detailFollowsViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
+        detailFollowsViewModel.listFollows.observe(viewLifecycleOwner) {
+            if (it != null) {
+                setFollowsData(it)
+            }
+        }
+    }
+
+    private fun setFollowsData(followsData: List<DetailFollowsResponseItem>) {
+        val followsAdapter = FollowsAdapter(followsData)
+        binding.rvFollows.adapter = followsAdapter
+        binding.rvFollows.layoutManager = LinearLayoutManager(requireContext())
+
+        followsAdapter.setOnItemClickCallback(object : FollowsAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: DetailFollowsResponseItem) {
+                showUserDetails(data)
+            }
+        })
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) binding.progressBarDetailFollows.visibility = View.VISIBLE else binding.progressBarDetailFollows.visibility = View.GONE
+    }
+
+    companion object {
+        const val ARG_SECTION_NUMBER = "section_number"
+        const val ARG_USERNAME = "username"
+        const val TAG = "DetailFollowsFragment"
+    }
+}
