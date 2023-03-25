@@ -1,9 +1,7 @@
 package com.rickyslash.githubuserapp
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +15,6 @@ class DetailFollowsFragment : Fragment() {
 
     private lateinit var binding: DetailFollowsFragmentBinding
     private val detailFollowsViewModel by viewModels<DetailFollowsViewModel>()
-    private lateinit var adapter: FollowsAdapter
 
     private fun showUserDetails(data: DetailFollowsResponseItem) {
         val moveUserDetailsIntent = Intent(requireContext(), DetailUserActivity::class.java)
@@ -77,7 +74,6 @@ class DetailFollowsFragment : Fragment() {
     companion object {
         const val ARG_SECTION_NUMBER = "section_number"
         const val ARG_USERNAME = "username"
-        const val TAG = "DetailFollowsFragment"
     }
 
     private fun connectionErrorCheck(isError: Boolean) {

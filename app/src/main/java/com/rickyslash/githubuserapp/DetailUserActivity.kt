@@ -7,13 +7,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
-import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rickyslash.githubuserapp.databinding.ActivityDetailUserBinding
-import kotlinx.coroutines.launch
 
 class DetailUserActivity : AppCompatActivity() {
 
