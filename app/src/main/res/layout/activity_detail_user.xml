@@ -28,7 +28,7 @@
             android:id="@+id/constraint_detail_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -77,32 +77,38 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <TextView
-            android:id="@+id/tv_detail_followers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="wers"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/constraint_detail_profile"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraint_detail_profile" />
-
-        <TextView
-            android:id="@+id/tv_detail_following"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_detail_follows"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="64dp"
             android:layout_marginBottom="16dp"
-            android:text="wing"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/constraint_detail_profile"
-            app:layout_constraintTop_toBottomOf="@+id/constraint_detail_profile" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_detail_profile">
+
+            <TextView
+                android:id="@+id/tv_detail_followers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:text="wers"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_detail_following"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_detail_following"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wing"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
