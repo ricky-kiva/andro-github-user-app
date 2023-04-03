@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 // change the class name from 'ApiConfigDummy' to 'ApiConfig'
+// to reviewer: i need this for documentation purpose (i uploaded this to my github repository)
 
 class ApiConfigDummy {
     companion object {
