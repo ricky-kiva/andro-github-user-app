@@ -1,15 +1,19 @@
 package com.rickyslash.githubuserapp
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rickyslash.githubuserapp.database.FavUser
+import com.rickyslash.githubuserapp.repository.FavUserRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailUserViewModel: ViewModel() {
+class DetailUserViewModel(application: Application): ViewModel() {
 
+    // for displaying data purpose
     private val _displayname = MutableLiveData<String>()
     val displayname: LiveData<String> = _displayname
 
@@ -30,6 +34,15 @@ class DetailUserViewModel: ViewModel() {
 
     private val _isError = MutableLiveData<Boolean>()
     val isError: LiveData<Boolean> = _isError
+
+    // for FavUser database purpose
+    private val mFavUserRepository: FavUserRepository = FavUserRepository(application)
+
+    fun getFavUserByUsername(username: String): LiveData<FavUser> = mFavUserRepository.getFavUserByUsername(username)
+
+    fun insertFavUser(username: String, avatarUrl: String) = mFavUserRepository.insertFavUser(username, avatarUrl)
+
+    fun deleteFavUserByUsername(username: String) = mFavUserRepository.deleteFavUserByUsername(username)
 
     companion object {
         private val TAG = DetailUserViewModel::class.java.simpleName

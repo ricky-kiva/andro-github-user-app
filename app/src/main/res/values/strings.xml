@@ -10,4 +10,6 @@
     <string name="tab_detail_2">FOLLOWING</string>
     <string name="dummy_page">page %d</string>
     <string name="tab_detail_desc">followers-following list tab</string>
+    <string name="add_favorite">Add to Favorite</string>
+    <string name="favorite">Favorites</string>
 </resources>
