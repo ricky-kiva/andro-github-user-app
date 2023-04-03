@@ -1,8 +1,9 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.ui.detailuser
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.rickyslash.githubuserapp.ui.detailuser.follows.DetailFollowsFragment
 
 class SectionsPagerAdapter(activity: DetailUserActivity): FragmentStateAdapter(activity) {
     var username = ""

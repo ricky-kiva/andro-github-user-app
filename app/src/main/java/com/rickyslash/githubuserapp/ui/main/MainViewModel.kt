@@ -1,17 +1,20 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.ui.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rickyslash.githubuserapp.api.ApiConfig
+import com.rickyslash.githubuserapp.api.response.GithubResponse
+import com.rickyslash.githubuserapp.api.response.ItemsItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailFollowsViewModel: ViewModel() {
+class MainViewModel: ViewModel() {
 
-    private val _listFollows = MutableLiveData<List<DetailFollowsResponseItem>?>()
-    val listFollows: LiveData<List<DetailFollowsResponseItem>?> = _listFollows
+    private val _listUser = MutableLiveData<List<ItemsItem>>()
+    val listUser: LiveData<List<ItemsItem>> = _listUser
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -20,28 +23,27 @@ class DetailFollowsViewModel: ViewModel() {
     val isError: LiveData<Boolean> = _isError
 
     companion object {
-        private val TAG = DetailFollowsViewModel::class.java.simpleName
+        private val TAG = MainViewModel::class.java.simpleName
     }
 
-    fun getFollows(username: String, index: Int) {
+    init {
+        searchUsers()
+    }
+
+    fun searchUsers(username: String = "Pink") {
         _isLoading.value = true
         _isError.value = false
-        lateinit var client: Call<List<DetailFollowsResponseItem>>
-        if (index == 1) {
-            client = ApiConfig.getApiService().getFollowers(username)
-        } else if (index == 2) {
-            client = ApiConfig.getApiService().getFollowing(username)
-        }
-        client.enqueue(object : Callback<List<DetailFollowsResponseItem>> {
+        val client = ApiConfig.getApiService().getUsers(username)
+        client.enqueue(object : Callback<GithubResponse>{
             override fun onResponse(
-                call: Call<List<DetailFollowsResponseItem>>,
-                response: Response<List<DetailFollowsResponseItem>>
+                call: Call<GithubResponse>,
+                response: Response<GithubResponse>
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        _listFollows.value = responseBody
+                        _listUser.value = responseBody.items
                     }
                 } else {
                     _isError.value = true
@@ -49,7 +51,7 @@ class DetailFollowsViewModel: ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<List<DetailFollowsResponseItem>>, t: Throwable) {
+            override fun onFailure(call: Call<GithubResponse>, t: Throwable) {
                 _isLoading.value = false
                 _isError.value = true
                 Log.e(TAG, "onFailure: ${t.message}")

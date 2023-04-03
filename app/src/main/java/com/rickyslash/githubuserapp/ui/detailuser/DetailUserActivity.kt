@@ -1,4 +1,4 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.ui.detailuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.rickyslash.githubuserapp.R
 import com.rickyslash.githubuserapp.databinding.ActivityDetailUserBinding
 import com.rickyslash.githubuserapp.helper.ViewModelFactory
 

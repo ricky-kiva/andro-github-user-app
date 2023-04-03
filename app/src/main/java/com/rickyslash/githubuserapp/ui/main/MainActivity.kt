@@ -1,4 +1,4 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.ui.main
 
 import android.app.SearchManager
 import android.content.Context
@@ -11,7 +11,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.rickyslash.githubuserapp.*
+import com.rickyslash.githubuserapp.api.response.ItemsItem
 import com.rickyslash.githubuserapp.databinding.ActivityMainBinding
+import com.rickyslash.githubuserapp.ui.detailuser.DetailUserActivity
 
 class MainActivity : AppCompatActivity() {
 

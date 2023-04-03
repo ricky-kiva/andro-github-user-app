@@ -1,9 +1,10 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.rickyslash.githubuserapp.api.response.ItemsItem
 import com.rickyslash.githubuserapp.databinding.ItemUserBinding
 
 class UsersAdapter(private val userList: List<ItemsItem>): RecyclerView.Adapter<UsersAdapter.ViewHolder>() {

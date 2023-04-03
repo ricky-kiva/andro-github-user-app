@@ -1,4 +1,4 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.ui.detailuser.follows
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.rickyslash.githubuserapp.api.response.DetailFollowsResponseItem
 import com.rickyslash.githubuserapp.databinding.DetailFollowsFragmentBinding
+import com.rickyslash.githubuserapp.ui.detailuser.DetailUserActivity
 
 class DetailFollowsFragment : Fragment() {
 

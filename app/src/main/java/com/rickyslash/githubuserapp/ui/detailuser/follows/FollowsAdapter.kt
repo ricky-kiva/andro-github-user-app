@@ -1,9 +1,10 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.ui.detailuser.follows
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.rickyslash.githubuserapp.api.response.DetailFollowsResponseItem
 import com.rickyslash.githubuserapp.databinding.ItemFollowsBinding
 
 class FollowsAdapter(private val followsList: List<DetailFollowsResponseItem>):  RecyclerView.Adapter<FollowsAdapter.ViewHolder>(){

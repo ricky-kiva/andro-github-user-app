@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailFollowsFragment">
+    tools:context=".ui.detailuser.follows.DetailFollowsFragment">
 
     <ProgressBar
         android:id="@+id/progressBar_detail_follows"

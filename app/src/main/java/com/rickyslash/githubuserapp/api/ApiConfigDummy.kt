@@ -1,4 +1,4 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.api
 
 import androidx.viewbinding.BuildConfig
 import okhttp3.Interceptor

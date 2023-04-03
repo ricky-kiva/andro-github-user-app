@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-/app/src/main/java/com/rickyslash/githubuserapp/ApiConfig.kt
+/app/src/main/java/com/rickyslash/githubuserapp/api/ApiConfig.kt

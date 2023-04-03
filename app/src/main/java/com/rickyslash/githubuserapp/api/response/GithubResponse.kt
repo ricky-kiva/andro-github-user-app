@@ -1,14 +1,20 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.api.response
 
 import com.google.gson.annotations.SerializedName
 
-data class DetailFollowsResponse(
+data class GithubResponse(
 
-	@field:SerializedName("DetailFollowsResponse")
-	val detailFollowsResponse: List<DetailFollowsResponseItem>
+	@field:SerializedName("total_count")
+	val totalCount: Int,
+
+	@field:SerializedName("incomplete_results")
+	val incompleteResults: Boolean,
+
+	@field:SerializedName("items")
+	val items: List<ItemsItem>
 )
 
-data class DetailFollowsResponseItem(
+data class ItemsItem(
 
 	@field:SerializedName("gists_url")
 	val gistsUrl: String,
@@ -36,6 +42,9 @@ data class DetailFollowsResponseItem(
 
 	@field:SerializedName("subscriptions_url")
 	val subscriptionsUrl: String,
+
+	@field:SerializedName("score")
+	val score: Any,
 
 	@field:SerializedName("received_events_url")
 	val receivedEventsUrl: String,

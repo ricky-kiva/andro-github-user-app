@@ -1,10 +1,12 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.ui.detailuser
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rickyslash.githubuserapp.api.ApiConfig
+import com.rickyslash.githubuserapp.api.response.DetailUserResponse
 import com.rickyslash.githubuserapp.database.FavUser
 import com.rickyslash.githubuserapp.repository.FavUserRepository
 import retrofit2.Call

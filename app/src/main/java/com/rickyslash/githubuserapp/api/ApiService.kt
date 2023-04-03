@@ -1,5 +1,8 @@
-package com.rickyslash.githubuserapp
+package com.rickyslash.githubuserapp.api
 
+import com.rickyslash.githubuserapp.api.response.DetailFollowsResponseItem
+import com.rickyslash.githubuserapp.api.response.DetailUserResponse
+import com.rickyslash.githubuserapp.api.response.GithubResponse
 import retrofit2.Call
 import retrofit2.http.*
 

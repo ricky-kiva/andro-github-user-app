@@ -3,7 +3,7 @@ package com.rickyslash.githubuserapp.helper
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.rickyslash.githubuserapp.DetailUserViewModel
+import com.rickyslash.githubuserapp.ui.detailuser.DetailUserViewModel
 
 class ViewModelFactory private constructor(private val mApplication: Application): ViewModelProvider.NewInstanceFactory() {
 
