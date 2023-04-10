@@ -12,10 +12,13 @@
             app:showAsAction="collapseActionView|always" />
 
         <item
-            android:id="@+id/menu_favorite"
+            android:id="@+id/menu_fav_user"
             android:icon="@drawable/ic_favorite_24"
             android:title="@string/favorite"
             app:showAsAction="always"/>
+
+        <item android:id="@+id/menu_settings"
+            android:title="@string/settings" />
 
     </group>
 

@@ -1,7 +1,10 @@
 package com.rickyslash.githubuserapp.ui.detailuser
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -15,7 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.rickyslash.githubuserapp.R
 import com.rickyslash.githubuserapp.databinding.ActivityDetailUserBinding
 import com.rickyslash.githubuserapp.helper.ViewModelFactory
-
+import com.rickyslash.githubuserapp.ui.settings.SettingsActivity
 class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityDetailUserBinding
@@ -67,7 +70,12 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
         }.attach()
 
         binding.btnDetailAddFav.setOnClickListener(this)
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.dropdown_menu, menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -76,10 +84,16 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
                 true
             }
+            R.id.menu_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    @SuppressLint("ResourceType")
     private fun checkFavUser(username: String) {
         detailUserViewModel.getFavUserByUsername(username).observe(this) {
             isFavorite = it != null
@@ -133,7 +147,7 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun obtainViewModel(activity: AppCompatActivity): DetailUserViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(DetailUserViewModel::class.java)
+        return ViewModelProvider(activity, factory)[DetailUserViewModel::class.java]
     }
 
     private fun connectionErrorCheck(isError: Boolean) {

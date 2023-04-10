@@ -19,18 +19,6 @@ class FavUserRepository(application: Application) {
 
     fun getAllFavUsers(): LiveData<List<FavUser>> = mFavUserDao.getAllFavUsers()
 
-    fun insert(favUser: FavUser) {
-        executorService.execute { mFavUserDao.insert(favUser) }
-    }
-
-    fun update(favUser: FavUser) {
-        executorService.execute { mFavUserDao.update(favUser) }
-    }
-
-    fun delete(favUser: FavUser) {
-        executorService.execute { mFavUserDao.delete(favUser) }
-    }
-
     fun getFavUserByUsername(username: String): LiveData<FavUser> = mFavUserDao.getFavUserByUsername(username)
 
     fun insertFavUser(username: String, avatarUrl: String) {

@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -15,6 +16,8 @@ import com.rickyslash.githubuserapp.*
 import com.rickyslash.githubuserapp.api.response.ItemsItem
 import com.rickyslash.githubuserapp.databinding.ActivityMainBinding
 import com.rickyslash.githubuserapp.ui.detailuser.DetailUserActivity
+import com.rickyslash.githubuserapp.ui.favuser.FavUserActivity
+import com.rickyslash.githubuserapp.ui.settings.SettingsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,6 +73,22 @@ class MainActivity : AppCompatActivity() {
             }
         })
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_fav_user -> {
+                val intent = Intent(this, FavUserActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.menu_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> true
+        }
     }
 
     private fun setUserData(userData: List<ItemsItem>) {

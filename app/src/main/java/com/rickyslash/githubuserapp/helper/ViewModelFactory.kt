@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rickyslash.githubuserapp.ui.detailuser.DetailUserViewModel
+import com.rickyslash.githubuserapp.ui.favuser.FavUserViewModel
 
 class ViewModelFactory private constructor(private val mApplication: Application): ViewModelProvider.NewInstanceFactory() {
 
@@ -11,6 +12,9 @@ class ViewModelFactory private constructor(private val mApplication: Application
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailUserViewModel::class.java)) {
             return DetailUserViewModel(mApplication) as T
+        }
+        if (modelClass.isAssignableFrom(FavUserViewModel::class.java)) {
+            return FavUserViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
